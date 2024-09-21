@@ -1,0 +1,162 @@
+
+
+
+Execise1:
+
+  1. create a directory with name "your firstname"
+  2. create a file with name "firstname-2" within the directory on Q1
+  3. Copy the file above to your default home directory
+  4. Change the name of the file to any name of your choice
+  5. delete the file from the above directory
+
+
+Exercise2:
+NB: Use your previous directory in Execise1 above:
+  1. Create any file of your choice and write the following content:
+    '' Devops is an automated process of building ,testing and deploying application codes
+       We need to understand the software development lifecycle to become a devops engineer''
+
+  2. check how many characters exist within your file
+  3. check the number of words within the file
+  4. delete the content of the file ONLY. NOT the file itself.
+
+
+  $ sudo hostnamectl set-hostname <yourchoice>
+  $ bash
+
+
+  4ilgmd
+  2i4Jf2
+
+
+  
+  /dev/sda1 
+
+  /dev/xvda1
+==================================================================================================================================
+
+
+
+
+if [ condition ]; then
+
+actions
+fi 
+
+
+if [condiion]; then
+
+go in 
+
+else
+ use the windor
+ fi
+
+ =================================================================================================================
+
+ #!/bin/bash
+ name=victor
+ echo -n "Please enter your name: "
+ read nam 
+ if [[ "$nam" == "$name" ]]; then 
+  class=team11
+  echo "welcome to Etech $class"
+else
+  class=team12
+  echo "you are not welcome in $class"
+fi
+
+
+
+ #!/bin/bash
+ names=victor
+ input=$1 
+ if [[ "$input" == "$name" ]]; then 
+  class=team11
+  echo "welcome to Etech $class"
+else
+  class=team12
+  echo "you are not welcome in $class"
+fi
+
+./deploy.sh dev uat prod
+for item in ${$@}; do
+  actions
+done 
+
+
+=================================================================================================
+
+days=(mon tue wed thur fri sat sun)
+       0   1   2   3    4   5   6
+
+days[2]=wed 
+days[6]=sun 
+days[@]= all elements of the list 
+
+#!/bin/bash
+#script to demo for loop operations
+days=(mon tue wed thur fri sat sun)
+objects_count=$(sudo find / -name "*.log")
+object_length=length(objects_count)
+echo $object_length
+for object in ${objects_count[@]}; do
+  scp -i key $object ubuntu@ip:/home/ubuntu 
+done 
+
+
+#!/bin/bash
+#script to demo for loop operations
+days=(mon tue wed thur fri sat sun)
+count=0
+for day in ${days[@]}; do
+  echo " Today is $day" 
+  count=(($count++))
+  if [[ "$day" == "wed" ]]; then
+    break
+  fi
+done 
+
+count=0
+
+count=$[ $count + 1 ]
+====================================================================================================
+
+server1=172.31.31.117
+server2=172.31.27.133
+
+
+#!/bin/bash
+#script to demo file distributions
+servers_ips=( 172.31.31.117  172.31.27.133 )
+files_to_copy=$(sudo find / -name "*.log")
+keys=( key1 key2 )
+
+for files in ${files_to_copy[@]}; do 
+  for server in ${servers_ips[@]}; do
+    for key in ${keys[@]}; do
+    scp -i ../$key $files ubuntu@$server:/home/ubuntu
+  done
+done
+done 
+echo "files were tranfered"
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
