@@ -1,0 +1,127 @@
+
+
+items=(a b c d e)
+
+items1=$(sudo find / -name "aws-*")
+
+
+$@ 
+
+./deploy.sh dev uat val prd
+
+
+items=$@
+
+for x in ${items[@]}; do 
+
+	infinite 0r finite 
+
+	while true; do
+		echo "welcome"
+	done 
+
+
+
+a=3
+
+while a < 3 ; do
+	echo "thanks"
+done 
+
+
+#!/bin/bash
+codeCoverage=85
+until [ "$codeCoverage" -gt 90 ]; do
+  echo " Build failure"
+  exit 5
+done
+
+if [ $? -eq 0 ]; then
+	echo "job well done"
+fi
+
+============================================================================================================================
+
+
+functions:
+
+
+#!/bin/bash
+
+<functionname>(){
+	function body....
+}
+functionname
+
+#!/bin/bash
+#simple function to great anyone
+name=$1
+
+greetings(){
+
+	echo "welcome $name"
+	file_create
+}
+
+file_create(){
+	mkdir $name
+	touch $name/dev-$name.log
+}
+greetings
+
+#!/bin/bash
+#simple function to great anyone
+name=$1
+
+greetings(){
+
+	echo "welcome $name"
+	
+}
+
+file_create(){
+	mkdir $name
+	touch $name/dev-$name.log
+}
+greetings
+file_create
+
+=============================================================================================================
+
+#!/bin/bash
+#script to automate file transfer from servers to aws s3 bucket making use of functions
+
+echo "function to pull all the requested files from the servers"
+
+s3_bucket="autotransfer"
+prefix="devops"
+region="us-east-2"
+read -p "Enter your workspace: " work 
+mkdir $work
+
+file_ingestion(){
+	server_ips=( 172.31.31.117 172.31.27.133 )
+    for server in ${server_ips[@]}; do
+    	scp -i ../key ubuntu@$server:/home/ubuntu/devops/*.log $work
+    done
+
+    files_ingested=$(ls $work)
+    for file in ${files_ingested[@]}; do
+    	echo "we are learning functions" >> $work/$file
+    done
+}
+
+aws_transfer(){
+
+	if [ $? -eq 0 ]; then 
+    files_to_copy=$(ls $work)
+		for file in ${files_to_copy[@]}; do
+			aws s3 cp $work/$file s3://$s3_bucket/$prefix/ --region $region
+		done
+	echo "files were tranferred"
+else
+	echo "looks like function file_ingestion did not ran successfully"
+fi
+}
+file_ingestion
+aws_transfer

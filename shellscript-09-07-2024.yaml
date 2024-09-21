@@ -1,0 +1,442 @@
+Linux shell scripting day3:
+==========================
+
+#!/bin/bash
+#this script will be use to create git repositories
+echo -n " please enter the directory name: "
+read directory
+sudo mkdir $directory
+git init $(pwd)/$directory
+echo " use your command line terminal to access $directory directory"
+echo "And make sure it a git repository to test the script"
+ls -a $directory | grep .git #this line helps you to detect a git repository special file
+echo " make sure you see the .git file above to confirm that you actually created the repo "
+echo " This is a property of Etech ConsultingDevopsBooster course!!! "
+
+The if...else...fi statement is the next form of control statement that allows: \ 
+Shell to execute statements in a controlled way and make the right choice.
+
+syntax:
+if [ expression ]; then
+   Statement(s) to be executed if expression is true
+else
+   Statement(s) to be executed if expression is not true
+fi
+example:
+Atmcard.sh
+#!/bin/bash
+pin="2022"
+echo -n " please enter your pinnumber:"
+read -s  pinnumber
+if [[ "$pinnumber" -eq "$pin" ]]; then
+        echo "Welcome to bank of America"
+else
+        echo "Sorry incorrect pin: please try again!!"
+fi
+
+-le  --> less than or equal to 
+-gt  --> greater than 
+-ge  --> greater than or equal to 
+-eq  --> equal to 
+-ne  --> not equal to 
+-lt  --> less than 
+
+=   --> equal to 
+!=  --> not equal to 
+==  ---> equal partern match 
+
+today==Today 
+
+#!/bin/bash   #we usually have  this inside docker containers or kubernetes pods
+read -p "please enter the first number: " a
+read -p "please enter the second number: " b
+if [ $a == $b ]
+then
+   echo "a is equal to b"
+else
+   echo "a is not equal to b"
+fi
+
+subcompare.sh: 4: [: 5: unexpected operator
+
+#script to analysed special variables
+#!/bin/bash
+
+echo "File Name: $0"
+echo "First Parameter : $1"
+echo "Second Parameter : $2"
+echo "Second Parameter : $3"
+echo "Second Parameter : $4"
+echo "Second Parameter : $5"
+echo "Quoted Values: $@"
+echo "Quoted Values: $*"
+echo "Total Number of Parameters : $#"
+
+output:
+$./test.sh Zara Ali
+File Name : ./test.sh
+First Parameter : Zara
+Second Parameter : Ali
+Quoted Values: Zara Ali
+Quoted Values: Zara Ali
+Total Number of Parameters : 2uykuyk
+#!/bin/bash
+#Author:Engr Rudolph
+#Company: Etech Consulting llc
+#Script will be use to test if nginx webapp is up and running and take actions
+if curl -s http://ec2-18-216-72-75.us-east-2.compute.amazonaws.com/ ; then
+  echo "Nginx is up and running"
+  exit 0
+else
+  echo "Nginx is down"
+  exit 1
+  echo "The exit status was captured to be `echo $?`"
+  #api call connection to azure function to trigger email notifications
+fi
+
+you can also use '-v' for verbose on the curl command to get more informations
+
+
+ #this script will be used to check if a user exist in a linux server and
+#Also check if the user directory is present or not
+#Before we test this script let's make sure we have already created the script
+#To add user
+
+#!/bin/bash
+
+echo -n " Please enter the username to be checked: "
+read username
+echo " Search Engine Activated!!..searching.. "
+
+if grep $username /etc/passwd; then
+echo " The user account for $username exist in the system.. "
+echo " The user $username is part of Etech ConsultingDevops course "
+elif ls -d /home/$username/; then
+echo " The directory for $username exist in the system "
+echo " Even though the $username acount does not exist "
+else
+echo " The user directory does not exist in the system "
+echo " The user account for $username does not exist "
+fi
+
+file check syntax:
+
+-f --> to test if it is a file
+-d --> to test if it a directory
+-r --> to test if a file has read permission
+-w --> to test if a file has write permission
+-x --> to test if a file has execution permission
+-z --> is true if a file is empty
+-n --> is true if a file is not empty
+
+#!/bin/sh
+
+a=10
+b=20
+
+if [ $a = $b ]
+then
+   echo "a is equal to b"
+else
+   echo "a is not equal to b"
+fi
+#script to analysed special variables
+
+#!/bin/sh
+
+echo "File Name: $0"
+echo "First Parameter : $1"
+echo "Second Parameter : $2"
+echo "Quoted Values: $@"
+echo "Quoted Values: $*"
+echo "Total Number of Parameters : $#"
+
+Q: How do you pass command line arguments to your script at runtime?
+ans: ./scriptname.sh arg1 arg2 ....argn , where "n" can be any number
+
+output:
+$./test.sh Zara Ali
+File Name : ./test.sh
+First Parameter : Zara
+Second Parameter : Ali
+Quoted Values: Zara Ali
+Quoted Values: Zara Ali
+Total Number of Parameters : 2uykuyk
+
+#This script will be used to test if a certain file has all read write and excution permissions
+#Then assign the permission to the file
+#!/bin/bash
+echo -n " Please enter the filename to check it permissions: "
+read filename
+if [ -f $filename ]&&[ -r $filename ]&&[ -w $filename ]&&[ -x $filename ]; then
+echo " The file exist and it has all the permissions required "
+ls -l $(pwd) | grep $filename
+else
+ echo " The file lacks some permission so,we are going to add those permissions as follows "
+ echo " see the permissions before we use the script to change it for your clarity!! "
+ls -l $(pwd) | grep $filename
+sleep 5
+ echo " Changing permissions starting.... "
+ sleep 3
+ sudo chmod ugo=rwx $filename
+echo " see details below"
+ls -l $(pwd) | grep $filename
+sleep 5
+fi
+
+#!/bin/bash
+#Author:Engr Rudolph
+#Company: Etech Consulting llc
+#Script will be use to test if tomcat website is up and running and take actions
+if curl -s http://ec2-18-237-239-239.us-west-2.compute.amazonaws.com/; then
+  echo "nginx is up and running"
+  exit 0
+else
+  echo "nginx is down"
+  exit 1
+  echo "The exit status was captured to be `echo $?`"
+  #api call connection to azure function to trigger email notifications
+fi
+
+
+ #this script will be used to check if a user exist in a linux server and
+#Also check if the user directory is present or not
+#Before we test this script let's make sure we have already created the script
+#To add user
+
+#!/bin/bash
+
+echo -n " Please enter the username to be checked: "
+read username
+echo " Search Engine Activated!!..searching.. "
+
+if grep $username /etc/passwd; then
+echo " The user account for $username exist in the system.. "
+echo " The user $username is part of Etech ConsultingDevops course "
+elif ls -d /home/$username/; then
+echo " The directory for $username exist in the system "
+echo " Even though the $username acount does not exist "
+else
+echo " The user directory does not exist in the system "
+echo " The user account for $username does not exist "
+fi
+===================================================================================================
+for loop: use to interate over a set of values to archieve control loop in programming
+
+#!/bin/bash
+days=( mon tue wed )
+for i in ${days[@]}; do
+        echo $i
+done
+
+${days[@]}= ${days[0]}
+            ${days[1]}
+            ${days[2]}
+
+
+steps to configure an automated file destribution script with 2 remote servers:
+
+step1: create two ec2 instances
+follow previous videos
+- Capture the private ip addresses of all your remote servers
+
+step2: create two identical user accounts on each remote servers
+$ sudo adduser etech # make sure you give the user a password
+$ sudo passwd etech 
+
+step3: Enable password authentication in /etc/ssh/sshd_config
+caution: do not break the file
+
+step4: restart sshd service 
+$ sudo systemctl restart sshd 
+
+step5: repeat from step3 for all your remote servers
+
+step6: create your script and run it
+
+step7: check the remote server to make sure your script actually move the file over
+
+Hints; if you hit any error about sshpass then run this
+  $ sudo apt install sshpass -y # to install sshpass command on your local machine
+
+  note: run 
+  $ sudo chown -R $user /tmp #on remote server
+
+#!/bin/bash
+ips=( 172.31.20.242  172.31.29.72 )
+
+for i in ${ips[@]}; do
+scp -i key ubuntu@$i:/tmp
+done 
+
+enterprise case study:
+
+#!/bin/bash
+password="Team3"
+user="etech1"
+ips=( 172.31.42.99  172.31.45.158 )
+
+for i in ${ips[@]}; do
+sshpass -p "$password" scp  etech.log $user@$i:/tmp
+done
+
+
+================================================================================================
+
+for day in mon tue wed thur fri sat sun; do 
+  echo $day 
+  done  
+
+items=(orange mango apple banana)
+items[0]=orange
+items[1]=mango
+items[2]=apple
+items[3]=banana
+echo ${items[0]}=orange
+echo ${items[1]}=mango
+echo ${items[2]}=apple
+echo ${items[3]}=banana
+
+for items in ${items[@]}; do
+echo $items 
+done 
+
+
+
+echo ${items[0]} =orange 
+
+scriptname.sh arg1 arg2 arg3 ....arg
+${@}
+
+echo ${items[0]}
+echo ${items[1]}
+echo ${items[2]}
+echo ${items[3]}
+
+./scriptname.sh arg1 arg2 arg3
+
+
+i=$[$i + 1]
+echo $i
+         0    1     2   3      
+items=(book pencil pen bag)
+
+items[0]=book
+items[1]=pencil
+items[2]=pen
+items[3]=bag
+
+${items[0]}
+${items[1]}
+${items[2]}
+${items[3]}
+
+for x in ${items[@]}; do
+  echo $x 
+done
+=================================================================================================
+
+expression  $?
+
+b=/a
+
+$? not 0  $?=1
+if [ $a =! $b ]; then 
+a and b are equal
+=================================================================================================
+
+/home/etechdemo
+
+monitor.sh  filecheck.sh  deploy-dev.sh   updatetemplate.sh 
+
+updatetemplate.sh {
+
+  sed -i "s/template/$1/g"  ../monitor.sh
+  sed -i "s/template/$1/g"  ../filecheck.sh
+  sed -i "s/template/$1/g"  ../deploy-dev.sh
+
+}
+
+./updatetemplate.sh etechpay
+
+a && b && c && d
+==============================================================================================
+$scriptname.sh $1 $2       .....${n}
+
+arg1='$1'
+arg2='$2'
+
+if [ '$arg1' == 'team3']; then 
+do something
+                  $1
+./scriptname.sh team3
+
+arg1='team3'
+
+=================================================================================================
+
+status='$?'
+if ['$status' -eq 0 ]; then 
+do something
+=================================================================================================
+if else if else
+if elif else
+
+for days in mon tue wed thur fri ; do 
+echo $days
+done 
+
+
+dev group = 10
+
+ls /etc/group
+
+member= ls /etc/group 
+
+for member in ${member[@]}; do
+    if grep $member /etc/passwd; then
+        echo "actions"
+        if [ $member = 10]; then
+            break
+        fi
+    fi
+
+done 
+
+member=(1 2 3 4 5 6 7 8 9 10)
+
+
+fruits=( orange apple mango pear banana pinapple )
+
+orange=1 = fruits[1]
+apple=2  = fruits[2]
+mango=3  = fruits[@]
+pear=4
+banana=5
+pinapple=6
+
+for fruit in ${fruits[@]}; do 
+    echo $fruit 
+   fruit=$[$fruit + 1]
+done 
+
+while fruit in ${fruits[@]}; do
+    actions
+done 
+
+if [condition]; then   $? = 0
+echo "action"          $? != 0
+else
+echo "action2 "
+fi 
+
+
+# if [condition1]; then 
+# echo "action"
+# elif [condition2]; then 
+# echo "action for condition2"
+# else
+#  echo "action if condition 2 is false"
+#  else
+#  echo "action if condition1 is false"
+#  fi
