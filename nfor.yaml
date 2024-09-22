@@ -1,0 +1,11 @@
+How to make changes to codes in github:
+How do you contribute to a project in git?
+
+ 1. Clone the repository on your local machine --> git clone <repo url> #if you are working on that repo for the first time.
+    But if you had worked on that repository before just do a git pull and continue
+ 2. create a new branch and switch to it --> git checkout -b $branchName
+ 3. make changes to the project (application code)
+ 4. commit the changes and write descriptive commit messages
+ 5. push the changes to the remote repository -->   git push #or git push --set-upstream origin $branchName
+ 6. create pull request and assign it to a senior engineer and wait for review and approval
+ 7. Merge into the main branch once approved.
