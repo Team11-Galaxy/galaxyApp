@@ -1,0 +1,10 @@
+git branch --> to view branches
+  $git branch $branchname --> create a new branch with the specified name, 
+  but it will not switch to that branch.
+  To switch to the new branch, you can use
+  $git checkout $branchname
+  Alternatively, you can combine the branch creation and checkout into a 
+  single command using the "-b" flag
+  $git checkout -b $branchname --> creates a branch and move you to it
+  $git branch --> use to show the present branches 
+- git branch -d $branchname --> use to delete a branch 
